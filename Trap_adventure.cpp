@@ -59,13 +59,10 @@ Uint32 callback( Uint32 interval, void* param )
 SDL_Texture* loadTexture(const std::string &file, SDL_Renderer *renderer)
 {
     SDL_Texture *texture = nullptr;
-	//nap anh tu ten file (voi duong dan)
 	SDL_Surface *loadedImage = IMG_Load(file.c_str());
-	//Neu khong co loi, chuyen doi ve dang texture and va tra ve
 	if (loadedImage != nullptr){
 		texture = SDL_CreateTextureFromSurface(renderer, loadedImage);
 		SDL_FreeSurface(loadedImage);
-		//dam bao viec chuyen doi khong co loi
 		if (texture == nullptr){
 			logSDLError(std::cout, "CreateTextureFromSurface");
 		}
@@ -77,13 +74,11 @@ SDL_Texture* loadTexture(const std::string &file, SDL_Renderer *renderer)
 }
 void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int w, int h)
 {
-	//Thiet lap hinh chu nhat dich ma chung ta muon ve anh vao trong
 	SDL_Rect dst;
 	dst.x = x;
 	dst.y = y;
     dst.w = w;
     dst.h = h;
-    //Dua toan bo anh trong texture vao hinh chu nhat dich
 	SDL_RenderCopy(ren, tex, NULL, &dst);
 }
 
@@ -141,7 +136,6 @@ void draw_map(SDL_Renderer* renderer, int **mat, SDL_Texture *img[], SDL_Texture
                     break;
                 }
                 case 8: {
-                   // renderTexture(img[7], renderer, pos_x, pos_y, TILE_SIZE, TILE_SIZE*2);
                     if(ok[8])
                         renderTexture(img[8], renderer, pos_x+TILE_SIZE/4, pos_y-TILE_SIZE+15, TILE_SIZE/2, TILE_SIZE-15);
                     break;
